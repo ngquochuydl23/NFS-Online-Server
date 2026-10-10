@@ -1,0 +1,38 @@
+services:
+  nfs-online:
+    build: .
+    image: nfs-online-server:latest
+    container_name: nfs-online
+    restart: unless-stopped
+    environment:
+      # Hostname advertised to game clients. Set to your public IP or domain.
+      PUBLIC_HOST: "${PUBLIC_HOST:-127.0.0.1}"
+      # Games to run: u2, mw, carbon (comma-separated) or leave empty for
+      # DEFAULT_GAMES from config/server.toml.
+      GAMES: "${GAMES:-}"
+    volumes:
+      # Persistent account and game state.
+      - data:/app/data
+    ports:
+      # Shared EA Messenger
+      - "13505:13505/tcp"
+      # Underground 2
+      - "20921:20921/tcp"
+      - "20922:20922/tcp"
+      # U2/MW web + PREL
+      - "20923:20923/tcp"
+      # Most Wanted
+      - "30920:30920/tcp"
+      - "30921:30921/tcp"
+      # Carbon FESL + Theater
+      - "18210:18210/tcp"
+      - "18215:18215/tcp"
+      # Carbon Massive Ads
+      - "9000:9000/tcp"
+      # U2/MW race relay (UDP)
+      - "20000:20000/udp"
+      # Carbon race transport (UDP)
+      - "19119:19119/udp"
+
+volumes:
+  data:

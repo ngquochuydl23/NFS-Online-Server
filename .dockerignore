@@ -1,0 +1,43 @@
+# Version control
+.git
+.github
+
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local runtime state (regenerated at container start)
+runtime/
+logs/
+*.pid
+*.log
+
+# Persistent data is mounted as a volume at runtime
+data/users/*
+data/backups/*
+data/classic/*
+data/accounts.sqlite3*
+data/server-state.json
+
+# Zig build artifacts (source is copied for the launcher layout check)
+source/client-zig/.tools/
+source/client-zig/.zig-cache/
+source/client-zig/zig-out/
+source/client-zig/dist/
+clients/**/*.asi
+clients/**/*.dll
+clients/**/*.lib
+clients/**/*.obj
+
+# Docs and tooling
+tests/
+tools/
+dist/
+*.tar
+*.zip
+*.md
+Dockerfile
+docker-compose.yml
+.dockerignore
